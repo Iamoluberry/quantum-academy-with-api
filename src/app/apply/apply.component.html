@@ -1,0 +1,263 @@
+<nav class="navbar navbar-expand-lg bg-light fixed-top">
+    <div class="container">
+      <a class="navbar-nav" routerLink="/home"><img src="assets/images/quantum-academy.png" alt="Logo" id="nav-logo"/></a>
+  
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-pills">
+  
+          <li class="nav-item text-center"><a class="nav-link" aria-current="page" routerLink="/home" routerLinkActive="active bg-warning ">Home</a></li>
+  
+          <li class="nav-item text-center"><a class="nav-link" routerLink="/courses" routerLinkActive="active bg-warning">Courses</a></li>
+  
+          <li class="nav-item text-center"><a class="nav-link" routerLink="/apply" routerLinkActive="active bg-warning">Apply</a></li>
+  
+          <li class="nav-item text-center"><a class="nav-link" routerLink="/contact" routerLinkActive="active bg-warning">Contact</a></li>
+  
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="text-center" id="barner">
+    <div>
+        <p class="text-warning ">Great to have you take the first step in fulfilling your dreams</p>
+    </div>
+</div>
+
+
+<form class="container" [formGroup]="applicantForm" (submit)="onSubmit(applicantForm.value)">
+    <div class="mb-3">
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <input formControlName="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="email@gmail.com">
+        </div>
+        <div *ngIf="applicantForm.controls['email'].invalid && applicantForm.controls['email'].touched" >
+            <div *ngIf="applicantForm.controls['email'].hasError('required')" class="text-danger">
+            Email name is required.
+          </div>
+        </div>
+    </div>
+
+    <div class="form-row d-flex flex-column flex-sm-row justify-content-between  gap-1">
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input formControlName="password" type="password" class="form-control" id="inputPassword4" placeholder="Password">
+            <div id="passwordHelpBlock" class="form-text">
+                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="inputpassword_confirmation4">Confirm password</label>
+            <input formControlName="password_confirmation" type="password" class="form-control" id="inputpassword_confirmation4" placeholder="Confirm password">
+            <div id="passwordHelpBlock" class="form-text">
+                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+            </div>
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">First name</label>
+            <input formControlName="first_name" type="name" class="form-control" placeholder="First name">
+        </div>
+        <div *ngIf="applicantForm.controls['first_name'].invalid && applicantForm.controls['first_name'].touched" >
+            <div *ngIf="applicantForm.controls['first_name'].hasError('required')" class="text-danger">
+            First name is required.
+          </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Other name</label>
+        <input formControlName="other_name" type="name" class="form-control" placeholder="Other name">
+        </div>
+        <div *ngIf="applicantForm.controls['other_name'].invalid && applicantForm.controls['other_name'].touched" >
+            <div *ngIf="applicantForm.controls['other_name'].hasError('required')" class="text-danger">
+            Other name is required.
+          </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Last name</label>
+        <input formControlName="last_name" type="name" class="form-control" placeholder="Last name">
+        </div>
+        <div *ngIf="applicantForm.controls['last_name'].invalid && applicantForm.controls['last_name'].touched" >
+            <div *ngIf="applicantForm.controls['last_name'].hasError('required')" class="text-danger">
+            Last name is required.
+          </div>
+        </div>
+    </div>
+      
+    <div class="mb-3">
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Date of birth</label>
+        <input formControlName="date_of_birth" type="date" class="form-control">
+        </div>
+        <div *ngIf="applicantForm.controls['date_of_birth'].invalid && applicantForm.controls['date_of_birth'].touched" >
+            <div *ngIf="applicantForm.controls['date_of_birth'].hasError('required')" class="text-danger">
+            DOB is required.
+          </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Country</label>
+        <select formControlName="country" class="form-select" aria-label="Default select example">
+            <option value="" disabled selected hidden>Select country</option>
+            <option *ngFor="let country of countryApiContainer">{{country.country_name}}</option>
+          </select>
+        </div>
+        <div *ngIf="applicantForm.controls['country'].invalid && applicantForm.controls['country'].touched" >
+            <div *ngIf="applicantForm.controls['country'].hasError('required')" class="text-danger">
+            Country is required.
+          </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">State of origin</label>
+        <select formControlName="state_of_origin" class="form-select" aria-label="Default select example">
+            <option value="" disabled selected hidden>Select state</option>
+            <option *ngFor="let state of stateApiContainer">{{state.state}}</option>
+          </select>
+        </div>
+        <div *ngIf="applicantForm.controls['state_of_origin'].invalid && applicantForm.controls['state_of_origin'].touched" >
+            <div *ngIf="applicantForm.controls['state_of_origin'].hasError('required')" class="text-danger">
+            State of origin is required.
+          </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Gender</label>
+        <select formControlName="gender" class="form-select">
+            <option value="" disabled selected hidden>Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Prefer not to specify">Prefer not to specify</option>
+          </select>
+        </div>
+        <div *ngIf="applicantForm.controls['gender'].invalid && applicantForm.controls['gender'].touched" >
+            <div *ngIf="applicantForm.controls['gender'].hasError('required')" class="text-danger">
+            Gender is required.
+          </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Mode of learning</label>
+        <select formControlName="mode_of_learning" class="form-select">
+            <option value="" disabled selected hidden>Select preferred learning mode</option>
+            <option value="Online">Online</option>
+            <option value="Physical">Physical</option>
+          </select>
+        </div>
+        <div *ngIf="applicantForm.controls['mode_of_learning'].invalid && applicantForm.controls['mode_of_learning'].touched" >
+            <div *ngIf="applicantForm.controls['mode_of_learning'].hasError('required')" class="text-danger">
+            Mode of learning is required.
+          </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Preferred course of study</label>
+        <select formControlName="course" class="form-select" aria-label="Default select example">
+            <option value="" disabled selected hidden>Select course</option>
+            <option *ngFor="let course of courses">{{course.course}}</option>
+          </select>
+        </div>
+        <div *ngIf="applicantForm.controls['course'].invalid && applicantForm.controls['course'].touched" >
+            <div *ngIf="applicantForm.controls['course'].hasError('required')" class="text-danger">
+            Mode of learning is required.
+          </div>
+        </div>
+    </div>
+   
+
+    <button class="btn btn-warning" [disabled]="loading">{{ loading ? 'Loading' : 'Submit' }}</button>
+</form>
+
+<hr class="text-warning mt-5">
+
+<!--footer-->
+<footer class="section-p1 mt-4 w-100">
+
+    <div class="d-flex flex-column w-100 ">
+      <div class="col">
+        <img class="footerlogo" src="assets/images/quantum-academy.png" alt="logo">
+      </div>
+  
+      <div class="row w-100  d-flex  gap-5  justify-content-between flex-sm-row">
+        <div class="col-md-2 col-sm-5">
+          <h4 class="font-weight-bold">Contact</h4>
+          <p><strong>Address:</strong> Pepper Road, Hazel Grove, Stockport, Cheshire, SK7 5SA, UK.</p>
+          <p><Strong>Phone:</Strong> +44 2035 143305</p>
+          <P><Strong>Hours:</Strong> 10:00 - 18:00, Mon - Fri</P>
+          <div class="follow">
+              <h4 class="font-weight-bold">Follow Us</h4>
+              <div>
+                  <i class="fab fa-facebook"></i>
+                  <i class="fab fa-twitter"></i>
+                  <i class="fab fa-instagram"></i>
+                  <i class="fab fa-youtube"></i>
+                  <i class="fab fa-pinterest"></i>
+              </div>
+          </div>
+      </div>
+  
+      <div class="col-md-2 col-sm-5">
+          <h4 class="font-weight-bold  ">Study</h4>
+          <p>Undergraduate</p>
+          <p>Postgraduate</p>
+          <p>Distance learning</p>
+          <p>Two-year accelerated degrees</p>
+          <p>Partnerships</p>            
+      </div>
+  
+      <div class="col-md-2 col-sm-5">
+          <h4 class="font-weight-bold ">Information for</h4>
+          <p>Schools and colleges</p>
+          <p>Alumni</p>
+          <p>Current students</p>
+          <p>Current staff</p>         
+      </div>
+  
+      <div class="col-md-2 install col-sm-5">
+          <h4 class="font-weight-bold">Install App</h4>
+          <p>Get app on Apple store or Play store</p>
+          <div class="row d-flex gap-2" style="margin-left: 1px;">
+              <div id="appStoreImg"></div>
+              <div id="playStoreImg"></div>
+          </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>&copy; Quantum Academy {{date}}</p>
+    </div>
+</footer>
+
