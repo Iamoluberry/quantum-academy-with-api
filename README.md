@@ -12,12 +12,8 @@ For administrative purposes, the link below will take you to the admin login pag
 
 https://iamoluberry.github.io/Quantum-Academy/auth/qa-login
 
-Credentials:
-* Username: admin
-* Password: admin
-
 Once logged in, administrators have the capability to edit or delete student details. Additionally, administrators can view and address student complaints. After resolving a complaint, administrators have the authority to delete it from the system.
 
-Note: Request such as GET, POST, PUT, and DELETE are used in the project through mockapi.io
+Note: Request such as GET, POST, PUT, and DELETE are used in the project with APIs created using Laravel
 
 See codes on GitHub using this link https://github.com/Iamoluberry/Quantum-Academy
